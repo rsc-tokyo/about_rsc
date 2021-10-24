@@ -531,3 +531,75 @@ Deleted branch sub1 (was 79f788b).
 PS C:\Users\user\Documents\git\hogehoge> git branch
 * main
 ```
+
+ここから下書き
+
+新規ファイルを追加するとき
+```PowerShell
+PS C:\Users\user\Documents\git\rsc_test_repository> git add GitHub使い方.md
+PS C:\Users\user\Documents\git\rsc_test_repository> git commit -m "add new file"
+[main a6e454e] add new file
+ 1 file changed, 500 insertions(+)
+ create mode 100644 "GitHub\344\275\277\343\201\204\346\226\271.md"
+PS C:\Users\user\Documents\git\rsc_test_repository> git status
+On branch main
+nothing to commit, working tree clean
+PS C:\Users\user\Documents\git\rsc_test_repository>  git push origin main
+Enumerating objects: 4, done.
+Counting objects: 100% (4/4), done.
+Delta compression using up to 16 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 7.56 KiB | 7.56 MiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+To https://github.com/catalyst-yuki-k/rsc_test_repository.git
+   79f788b..a6e454e  main -> main
+```
+git addせずにいきなりcommitすると下記のようになる
+```PowerShell
+PS C:\Users\user\Documents\git\rsc_test_repository> git commit -m "add new file"
+On branch main
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        "GitHub\344\275\277\343\201\204\346\226\271.md"
+
+nothing added to commit but untracked files present (use "git add" to track)
+```
+既存のファイルを編集するとき
+```PowerShell
+PS C:\Users\user\Documents\git\rsc_test_repository> git commit -a -m "装飾漏れを修正"
+[main b8c1e47] 装飾漏れを修正
+ 1 file changed, 71 insertions(+), 38 deletions(-)
+PS C:\Users\user\Documents\git\rsc_test_repository>  git push origin main
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Delta compression using up to 16 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 842 bytes | 842.00 KiB/s, done.
+Total 3 (delta 2), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
+To https://github.com/catalyst-yuki-k/rsc_test_repository.git
+   a6e454e..b8c1e47  main -> main
+PS C:\Users\user\Documents\git\rsc_test_repository>
+```
+リモートリポジトリを切り替えるとき
+```PowerShell
+PS C:\Users\user\Documents\git\rsc_test_repository> git remote rm origin
+PS C:\Users\user\Documents\git\rsc_test_repository> git remote add origin https://github.com/rsc-tokyo/about_rsc.git
+PS C:\Users\user\Documents\git\rsc_test_repository> git fetch
+PS C:\Users\user\Documents\git\rsc_test_repository> git push origin main
+Enumerating objects: 29, done.
+Counting objects: 100% (29/29), done.
+Delta compression using up to 16 threads
+Compressing objects: 100% (26/26), done.
+Writing objects: 100% (29/29), 11.52 KiB | 2.30 MiB/s, done.
+Total 29 (delta 6), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (6/6), done.
+To https://github.com/rsc-tokyo/about_rsc.git
+ * [new branch]      main -> main
+PS C:\Users\user\Documents\git\rsc_test_repository>
+```
+切り替えないと以下のようになる
+```PowerShell
+PS C:\Users\user\Documents\git\rsc_test_repository> git remote add origin https://github.com/rsc-tokyo/about_rsc.git
+error: remote origin already exists.
+```
