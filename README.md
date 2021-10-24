@@ -1,8 +1,9 @@
 # rsc_test_repository
 
 ## Hello, world!
-## We are RSC.
+We are RSC.
 
+## 組織情報
 ### 基本理念
 容姿端麗であれ
 頭脳明晰であれ
