@@ -165,6 +165,7 @@ Initialized empty Git repository in C:/Users/user/Documents/git/hogehoge/.git/
 「git init」コマンドはGitリポジトリを新たに作成するコマンドです。バージョン管理を行っていない既存のプロジェクトをGitリポジトリに変換する場合や、空の新規リポジトリを作成して初期化する場合に使用します。git initコマンドを実行するとカレントディレクトリをGitリポジトリに変換します。
 
 git pullしてGitHub上のリモートリポジトリをローカルリポジトリと同期させる
+  
 参考：https://qiita.com/Takao_/items/5e563d5ea61d2829e497
 ```PowerShell
 PS C:\Users\user\Documents\git\hogehoge> git pull origin main
@@ -173,6 +174,7 @@ From https://github.com/example-user/hogehoge
 fatal: refusing to merge unrelated histories
 ```
 git mergeして同期させる
+  
 参考：https://qiita.com/mei28/items/85bc881ac1f26332ac15
 ```PowerShell
 PS C:\Users\user\Documents\git\hogehoge> git merge --allow-unrelated-histories origin/main
@@ -215,9 +217,12 @@ nothing to commit (create/copy files and use "git add" to track)
 "example-user@hogehoge.com"と"example-user"は自分のものに読み替えてください。
 ```PowerShell
 PS C:\Users\user\Documents\git\hogehoge> git config --global user.email "example-user@hogehoge.com"
+```
+```PowerShell
 PS C:\Users\user\Documents\git\hogehoge> git config --global user.name "example-user"
 ```
 登録を怠ると、コミット実行時に下記のようなエラーが出る
+  
 参考：https://yutaka-gakushu.com/tips/git/author-identity-unknown-error
 ```PowerShell
 PS C:\Users\user\Documents\git\hogehoge> git commit -m "add new file"
@@ -246,11 +251,7 @@ PS C:\Users\user\Documents\git\hogehoge> git commit -m "add new file"
 ```
 これで、リポジトリに対してファイルの追加が記録されました。
   
-再度状況を確認します。
-  
-git status
-  
-結果は以下のようになります。
+再度状況を確認します。結果は以下のようになります。
   
 これはすべてのファイルがコミット済みの状態を表しています。
 ```PowerShell
@@ -258,8 +259,11 @@ PS C:\Users\user\Documents\git\hogehoge> git status
 On branch main
 nothing to commit, working tree clean
 ```
-さらに、リモートリポジトリに反映させる前に、リモートリポジトリの情報を追加します。この情報は、先ほどGitHub上に表示された、リモートリポジトリのアドレスです。今回は例を示していますので「https://github.com/example-user/hogehoge.git」の部分をご自身のリモートリポジトリのものに置き換えて実行しましょう。
-リモートリポジトリのアドレスの確認方法は次ページの通り：https://reasonable-code.com/github-collaborators/
+さらに、リモートリポジトリに反映させる前に、リモートリポジトリの情報を追加します。この情報は、先ほどGitHub上に表示された、リモートリポジトリのアドレスです。今回は例を示していますので「https://github.com/example-user/hogehoge.git」 の部分をご自身のリモートリポジトリのものに置き換えて実行しましょう。
+  
+リモートリポジトリのアドレスの確認方法は次ページの通り
+  
+参考：https://reasonable-code.com/github-collaborators/
 
 git remote add origin https://github.com/example-user/hogehoge.git
 ### 4.ローカルリポジトリをプッシュしてリモートリポジトリへ反映させる（git push）
@@ -312,7 +316,9 @@ hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 PS C:\Users\user\Documents\git\hogehoge> git commit -a -m "２行目にコメントを追加"
 [main c8e3665] ２行目にコメントを追加
  1 file changed, 19 insertions(+), 1 deletion(-)
+ ```
 次にプッシュする。
+```PowerShell
 PS C:\Users\user\Documents\git\hogehoge> git push origin main
 Enumerating objects: 5, done.
 Counting objects: 100% (5/5), done.
@@ -324,9 +330,10 @@ To https://github.com/example-user/hogehoge.git
    fa45540..c8e3665  main -> main
 ```
 コメントを追記していないとプッシュしても下記のようになる。
+```PowerShell
 PS C:\Users\user\Documents\git\hogehoge> git push origin main
 Everything up-to-date
-
+```
 ## GitHubの基本的な使い方(ブランチの使い方)
 基本的な使い方が分かったところで、実際の開発現場でよく利用されているブランチ（branch）の使い方について見ていきましょう。
   
@@ -335,17 +342,22 @@ Everything up-to-date
 基本的には以下のような手順で利用します。
   
 ブランチの作成、移動
+  
 ブランチ内での開発作業
+  
 ブランチにプッシュ
+  
 ブランチからプル
+  
 ブランチのマージ
+  
 ブランチの削除
 
 ### ブランチの作成、移動
 まずはgit branchで現在のブランチ一覧を見ていきましょう。
 実行結果は以下のようになります。
 ```PowerShell
-PS C:\Users\user\Documents\git\rsc_test_repository> git branch
+PS C:\Users\user\Documents\git\hogehoge> git branch
 * main
 ```
 作業中のブランチには「*」が付きます。
@@ -353,15 +365,21 @@ PS C:\Users\user\Documents\git\rsc_test_repository> git branch
 
 それではブランチを作成してみましょう。
 今回は「sub1」というブランチを作成します。
-PS C:\Users\user\Documents\git\rsc_test_repository> git branch sub1
+```PowerShell
+PS C:\Users\user\Documents\git\hogehoge> git branch sub1
+```
 ブランチの移動は、checkoutコマンドで行います。
-PS C:\Users\user\Documents\git\rsc_test_repository> git checkout sub1
+```PowerShell
+PS C:\Users\user\Documents\git\hogehoge> git checkout sub1
 Switched to branch 'sub1'
+```
 なお、ブランチの作成と移動は、以下のコマンドでまとめて行うこともできます。
-PS C:\Users\user\Documents\git\rsc_test_repository> git checkout sub1
+```PowerShell
+PS C:\Users\user\Documents\git\hogehoge> git checkout sub1
+```
 ここで再び、現在のブランチ一覧を見てみましょう。
 ```PowerShell
-PS C:\Users\user\Documents\git\rsc_test_repository> git branch
+PS C:\Users\user\Documents\git\hogehoge> git branch
   main
 * sub1
 ```
@@ -370,27 +388,35 @@ sub1ブランチが追加され、作業中であることが分かります。
 ### ブランチ内での開発作業
 次にブランチ内で開発作業を行っていきます。
 とは言ってもなんら変わることはありません。
-例として、goodmorning.htmlというファイルを作成してみます。
+例として、hogehoge2.txtというファイルを作成してみます。
 
 ### ブランチにプッシュ
-まずは、作成したファイルをgitに追加、コミットします。
+作成したファイルをgitに追加します。
 ```PowerShell
-PS C:\Users\user\Documents\git\rsc_test_repository> git add subpage.html
-PS C:\Users\user\Documents\git\rsc_test_repository> git status
+PS C:\Users\user\Documents\git\hogehoge> git add hogehoge2.txt
+```
+確認します。この操作は省略できます。
+```PowerShell
+PS C:\Users\user\Documents\git\hogehoge> git status
 On branch sub1
 Changes to be committed:
   (use "git restore --staged <file>..." to unstage)
-        new file:   subpage.html
+        new file:   hogehoge2.txt
 
 Untracked files:
   (use "git add <file>..." to include in what will be committed)
         "GitHub\344\275\277\343\201\204\346\226\271.md"
-
-PS C:\Users\user\Documents\git\rsc_test_repository> git commit -m "add file subpage.html"
-[sub1 79f788b] add file subpage.html
+```
+作成したファイルをgitにコミットします。
+```PowerShell
+PS C:\Users\user\Documents\git\hogehoge> git commit -m "add file hogehoge2.txt"
+[sub1 79f788b] add file hogehoge2.txt
  1 file changed, 9 insertions(+)
- create mode 100644 subpage.html
-PS C:\Users\user\Documents\git\rsc_test_repository> git status
+ create mode 100644 hogehoge2.txt
+```
+確認します。この操作は省略できます。
+```PowerShell
+PS C:\Users\user\Documents\git\hogehoge> git status
 On branch sub1
 Untracked files:
   (use "git add <file>..." to include in what will be committed)
@@ -399,10 +425,12 @@ Untracked files:
 nothing added to commit but untracked files present (use "git add" to track)
 ```
 これで、ローカルリポジトリに対してファイルの追加が記録されました。
+  
 では、リモートリポジトリに反映させてみましょう。
+  
 リモートリポジトリの情報は登録済みですので、ブランチ名を指定するだけで、プッシュできます。
 ```PowerShell
-PS C:\Users\user\Documents\git\rsc_test_repository> git push origin sub1
+PS C:\Users\user\Documents\git\hogehoge> git push origin sub1
 Enumerating objects: 4, done.
 Counting objects: 100% (4/4), done.
 Delta compression using up to 16 threads
@@ -411,9 +439,9 @@ Writing objects: 100% (3/3), 389 bytes | 389.00 KiB/s, done.
 Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
 remote:
 remote: Create a pull request for 'sub1' on GitHub by visiting:
-remote:      https://github.com/catalyst-yuki-k/rsc_test_repository/pull/new/sub1
+remote:      https://github.com/example-user/hogehoge/pull/new/sub1
 remote:
-To https://github.com/catalyst-yuki-k/rsc_test_repository.git
+To https://github.com/example-user/hogehoge.git
  * [new branch]      sub1 -> sub1
 ```
 GitHubで確認してみると、現在2つのブランチが存在し、sub1ブランチがプッシュされていることが分かりますね。
@@ -457,44 +485,49 @@ ls
 
 まず、作業中のブランチをmasterに切り替えます。
 ```PowerShell
-PS C:\Users\user\Documents\git\rsc_test_repository> git checkout main
+PS C:\Users\user\Documents\git\hogehoge> git checkout main
 Switched to branch 'main'
-PS C:\Users\user\Documents\git\rsc_test_repository> git branch
+```
+```PowerShell
+PS C:\Users\user\Documents\git\hogehoge> git branch
 * main
   sub1
 ```
-次に、sub1ブランチの作業結果をマージします。
-実行結果は以下のようになります。
-sub1ブランチで作成したgoodmorning.htmlファイルが追加されたことが分かりますね。
+次に、sub1ブランチの作業結果をマージします。実行結果は以下のようになります。
+  
+sub1ブランチで作成したhogehoge2.txtファイルが追加されたことが分かりますね。
 ```PowerShell
-PS C:\Users\user\Documents\git\rsc_test_repository> git merge sub1
+PS C:\Users\user\Documents\git\hogehoge> git merge sub1
 Updating f8d3777..79f788b
 Fast-forward
- subpage.html | 9 +++++++++
+ hogehoge2.txt | 9 +++++++++
  1 file changed, 9 insertions(+)
- create mode 100644 subpage.html
+ create mode 100644 hogehoge2.txt
 ```
 GitHubにプッシュしてみましょう。
 ```PowerShell
-PS C:\Users\user\Documents\git\rsc_test_repository> git push origin main
+PS C:\Users\user\Documents\git\hogehoge> git push origin main
 Total 0 (delta 0), reused 0 (delta 0), pack-reused 0
-To https://github.com/catalyst-yuki-k/rsc_test_repository.git
+To https://github.com/example-user/hogehoge.git
    f8d3777..79f788b  main -> main
 ```
 これで、ブランチsub1の内容がmasterにマージされました。
 
 ### ブランチの削除
 使わなくなったブランチは削除することができます。
+  
 ただし、実際の開発現場では、間違って作成してしまった場合を除き、作業が完了したブランチであっても残しておくことが一般的です。
+  
 ブランチの削除は以下のコマンドで行います。
 ```PowerShell
-PS C:\Users\user\Documents\git\rsc_test_repository> git branch -d sub1
+PS C:\Users\user\Documents\git\hogehoge> git branch -d sub1
 Deleted branch sub1 (was 79f788b).
 ```
 結果を見てみましょう。
+  
 実行結果は以下のようになります。
 ブランチsub1が削除され、masterだけが存在していることが分かります。
 ```PowerShell
-PS C:\Users\user\Documents\git\rsc_test_repository> git branch
+PS C:\Users\user\Documents\git\hogehoge> git branch
 * main
 ```
